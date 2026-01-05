@@ -12,3 +12,6 @@ I designed an AI assistant that:
 - Guides the user with clear, safe actions
 
 - Keeps a record of the incident
+
+The system does not debug or fix code. It assists humans in making correct decisions and keeps incident records for future review.
+A free LLM is used only for reasoning, while the main focus is on process-based, responsible AI.
