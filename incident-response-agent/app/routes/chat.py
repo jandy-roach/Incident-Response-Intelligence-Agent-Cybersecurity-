@@ -22,11 +22,12 @@ def chat_incident(incident: IncidentRequest):
     - Explain the severity in one simple line.
 
     RECOMMENDED ACTIONS:
-    - List 3–5 safe, high-level steps the team should take.
-    - Do NOT perform actions.
-    - Do NOT give technical commands.
-    - Focus on guidance and safety.
-"""
+    - Suggest 3–5 high-level response steps.
+    - Use advisory language such as: consider, review, verify, evaluate.
+    - Do NOT give commands.
+    - Do NOT provide technical commands or scripts.
+    - Focus on guidance and safety, not execution.
+    """
 
 
 
