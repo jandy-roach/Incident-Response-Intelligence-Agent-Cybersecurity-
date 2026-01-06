@@ -19,13 +19,15 @@ def chat_incident(incident: IncidentRequest):
     - Choose one: Low / Medium / High.
 
     REASON:
-    - Explain the severity in one simple line based on the current information.
-    - If information is missing, assume worst-case but say it is preliminary.
+    - Explain the severity in one simple line.
 
-    Rules:
-    - Do NOT give solutions.
-    - Be clear and concise.
-    """
+    RECOMMENDED ACTIONS:
+    - List 3–5 safe, high-level steps the team should take.
+    - Do NOT perform actions.
+    - Do NOT give technical commands.
+    - Focus on guidance and safety.
+"""
+
 
 
     messages = [
