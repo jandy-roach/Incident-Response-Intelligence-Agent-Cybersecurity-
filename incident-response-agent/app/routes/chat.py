@@ -8,12 +8,25 @@ router = APIRouter()
 def chat_incident(incident: IncidentRequest):
 
     system_message = """
-    You are a cybersecurity assistant.
-    Your job is to:
-    1. First ask 2–3 simple follow-up questions.
-    2. Do NOT give solutions yet.
-    3. Only ask questions clearly.
+    You are an Incident Response Intelligence Agent.
+
+    Always respond in this exact format:
+
+    QUESTIONS:
+    - Ask 2–3 simple follow-up questions.
+
+    SEVERITY:
+    - Choose one: Low / Medium / High.
+
+    REASON:
+    - Explain the severity in one simple line based on the current information.
+    - If information is missing, assume worst-case but say it is preliminary.
+
+    Rules:
+    - Do NOT give solutions.
+    - Be clear and concise.
     """
+
 
     messages = [
         {"role": "system", "content": system_message},
