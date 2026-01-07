@@ -57,16 +57,57 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "40px", maxWidth: "700px" }}>
-      <h1>Incident Response Intelligence Agent</h1> 
-      <ChatWindow messages={messages} loading={loading} />
-      <br />
-      <InputBox
-        input={input}
-        setInput={setInput}
-        onSend={sendMessage}
-        disabled={loading}
-      />
+    <div className="h-screen flex flex-col bg-gray-100">
+
+      {/* Header */}
+      <header className="bg-white border-b px-6 py-4">
+        <h1 className="text-xl font-semibold text-gray-800">
+          🛡️ Incident Response Intelligence Agent
+        </h1>
+        <p className="text-sm text-gray-500">
+          Guided security incident investigation & response
+        </p>
+      </header>
+
+      {/* Main Content */}
+      <div className="flex flex-1 overflow-hidden">
+
+        {/* LEFT: Conversation */}
+        <main className="flex-1 flex flex-col bg-gray-50">
+
+          <div className="flex-1 overflow-y-auto p-6">
+            <ChatWindow messages={messages} loading={loading} />
+          </div>
+
+          <div className="border-t bg-white p-4">
+            <InputBox
+              input={input}
+              setInput={setInput}
+              onSend={sendMessage}
+              disabled={loading}
+            />
+          </div>
+
+        </main>
+
+        {/* RIGHT: Incident Panel */}
+        <aside className="w-80 bg-white border-l p-4 hidden md:block">
+          <h2 className="text-sm font-semibold text-gray-700 mb-3">
+            Incident Status
+          </h2>
+
+          <div className="text-sm text-gray-600 space-y-2">
+            <p><b>Status:</b> Under Investigation</p>
+            <p><b>Severity:</b> Determined by AI</p>
+            <p><b>Last Update:</b> Live</p>
+          </div>
+
+          <div className="mt-4 text-xs text-gray-500">
+            Follow AI guidance and confirm when the issue is resolved.
+          </div>
+        </aside>
+
+      </div>
     </div>
   );
 }

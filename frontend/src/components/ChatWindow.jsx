@@ -10,15 +10,7 @@ function ChatWindow({ messages, loading }) {
   }, [messages, loading]);
 
   return (
-    <div
-      style={{
-        background: "#f4f4f4",
-        padding: "15px",
-        minHeight: "300px",
-        maxHeight: "400px",
-        overflowY: "auto"
-      }}
-    >
+    <div className="bg-gray-50 rounded-md p-4 h-96 overflow-y-auto">
       {messages.map((msg, index) => (
         <Message key={index} role={msg.role} text={msg.text} />
       ))}

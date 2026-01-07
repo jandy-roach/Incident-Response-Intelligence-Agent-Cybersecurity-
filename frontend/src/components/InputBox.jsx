@@ -1,29 +1,25 @@
 function InputBox({ input, setInput, onSend, disabled }) {
   return (
-    <>
+    <div className="flex gap-2">
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        rows={4}
-        style={{ width: "100%", padding: "10px" }}
-        placeholder="Type your message..."
         disabled={disabled}
+        rows={3}
+        className="flex-1 resize-none border rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-300"
+        placeholder="Describe what you are observing..."
       />
-
-      <br /><br />
 
       <button
         onClick={onSend}
         disabled={disabled}
-        style={{
-          padding: "10px 20px",
-          opacity: disabled ? 0.6 : 1,
-          cursor: disabled ? "not-allowed" : "pointer"
-        }}
+        className={`px-4 rounded-md text-white
+          ${disabled ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"}
+        `}
       >
-        {disabled ? "Waiting..." : "Send"}
+        Send
       </button>
-    </>
+    </div>
   );
 }
 

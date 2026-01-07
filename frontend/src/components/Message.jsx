@@ -7,29 +7,16 @@ function Message({ role, text }) {
     else if (text.includes("SEVERITY:\nLow")) severityColor = "green";
   }
 
-  return (
-    <div style={{ marginBottom: "15px" }}>
-      <b>{role === "user" ? "You" : "AI"}:</b>
-
-      {severityColor && (
-        <div
-          style={{
-            display: "inline-block",
-            marginLeft: "10px",
-            padding: "2px 8px",
-            borderRadius: "5px",
-            background: severityColor,
-            color: "white",
-            fontSize: "12px"
-          }}
-        >
-          {severityColor.toUpperCase()}
-        </div>
-      )}
-
-      <pre style={{ whiteSpace: "pre-wrap" }}>{text}</pre>
+return (
+  <div className="mb-4">
+    <div className="text-xs text-gray-500 mb-1">
+      {role === "user" ? "USER INPUT" : "AI RESPONSE"}
     </div>
-  );
+    <div className="bg-white border p-3 text-sm whitespace-pre-wrap">
+      {text}
+    </div>
+  </div>
+);
 }
 
 export default Message;
