@@ -5,39 +5,30 @@ from app.models.incident import IncidentRequest
 router = APIRouter()
 
 @router.post("/chat")
-def chat_incident(incident: IncidentRequest):
+def chat_incident(data: IncidentRequest):
 
     system_message = """
-    You are an Incident Response Intelligence Agent.
+You are an Incident Response Intelligence Agent.
 
-    Always respond in this exact format:
+How you should behave:
+- First, ask investigation questions to understand the issue.
+- Use the user's answers to assess severity and recommend actions.
+- After recommending actions, ALWAYS ask the user if the issue is resolved.
+- If the user says the issue is resolved, give a short summary and stop.
+- If the issue is NOT resolved, continue helping with further guidance.
+- Do NOT assume the issue is fixed unless the user confirms it.
+- Use advisory language only.
+"""
 
-    QUESTIONS:
-    - Ask 2–3 simple follow-up questions.
+    messages = [{"role": "system", "content": system_message}]
 
-    SEVERITY:
-    - Choose one: Low / Medium / High.
-
-    REASON:
-    - Explain the severity in one simple line.
-
-    RECOMMENDED ACTIONS:
-    - Suggest 3–5 high-level response steps.
-    - Use advisory language such as: consider, review, verify, evaluate.
-    - Do NOT give commands.
-    - Do NOT provide technical commands or scripts.
-    - Focus on guidance and safety, not execution.
-    """
-
-
-
-    messages = [
-        {"role": "system", "content": system_message},
-        {"role": "user", "content": incident.message}
-    ]
+    # Add full conversation history
+    for msg in data.messages:
+        messages.append({
+            "role": msg.role,
+            "content": msg.content
+        })
 
     reply = ask_mistral(messages)
 
-    return {
-        "response": reply
-    }
+    return {"response": reply}
