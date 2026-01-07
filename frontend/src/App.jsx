@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ChatWindow from "./components/ChatWindow";
 import InputBox from "./components/InputBox";
@@ -8,7 +8,21 @@ function App() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Load chat history on page load
+  useEffect(() => {
+    const savedMessages = localStorage.getItem("chatHistory");
+    if (savedMessages) {
+      setMessages(JSON.parse(savedMessages));
+    }
+  }, []);
+
+  // Save chat history whenever it changes
+  useEffect(() => {
+    localStorage.setItem("chatHistory", JSON.stringify(messages));
+  }, [messages]);
+
   const sendMessage = async () => {
+    if (loading) return;
     if (!input) return;
 
     const updatedMessages = [
@@ -47,7 +61,12 @@ function App() {
       <h1>Incident Response Intelligence Agent</h1> 
       <ChatWindow messages={messages} loading={loading} />
       <br />
-      <InputBox input={input} setInput={setInput} onSend={sendMessage} />
+      <InputBox
+        input={input}
+        setInput={setInput}
+        onSend={sendMessage}
+        disabled={loading}
+      />
     </div>
   );
 }
