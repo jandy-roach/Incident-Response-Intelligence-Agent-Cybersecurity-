@@ -1,24 +1,28 @@
-function InputBox({ input, setInput, onSend, disabled }) {
-  return (
-    <div className="flex gap-2">
-      <textarea
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        disabled={disabled}
-        rows={3}
-        className="flex-1 resize-none border rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-300"
-        placeholder="Describe what you are observing..."
-      />
+function InputBox({ input, setInput, onSend, disabled, isFirst }) {
+  const label = isFirst ? "▶ Start Investigation" : "▶ Send Update";
 
-      <button
-        onClick={onSend}
-        disabled={disabled}
-        className={`px-4 rounded-md text-white
-          ${disabled ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"}
-        `}
-      >
-        Send
-      </button>
+  return (
+    <div style={{ width: "100%" }}>
+      <label className="input-label">🧠 Analyst Input</label>
+      <div className="flex gap-2" style={{ marginTop: 6 }}>
+        <textarea
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          disabled={disabled}
+          rows={4}
+          className="input-textarea"
+          placeholder="Describe the security issue you are seeing (logs, alerts, behavior)..."
+        />
+
+        <button
+          onClick={onSend}
+          disabled={disabled}
+          className={`send-button ${disabled ? "disabled" : ""}`}
+          aria-label={label}
+        >
+          {label}
+        </button>
+      </div>
     </div>
   );
 }

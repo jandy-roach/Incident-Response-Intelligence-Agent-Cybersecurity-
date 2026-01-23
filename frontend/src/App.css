@@ -1,8 +1,9 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .logo {
@@ -40,3 +41,301 @@
 .read-the-docs {
   color: #888;
 }
+
+/* App layout styles for Incident Response UI */
+.header {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.layout {
+  display: flex;
+  height: calc(100vh - 100px);
+}
+
+.history {
+  width: 25%;
+  border-right: 2px solid #e0e7ff;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.chat {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-window {
+  flex: 1;
+  padding: 16px 14px;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  overflow-y: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+/* Tidy message layout */
+.message-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.message-row.user { justify-content: flex-end; }
+.message-row.ai { justify-content: flex-start; }
+
+.message-meta { display: flex; align-items: center; gap: 8px; min-width: 56px; }
+.message-badge {
+  font-size: 11px;
+  color: #fff;
+  background: #64748b;
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.message-row.user .message-badge { background: #0ea5e9; }
+.message-row.ai .message-badge { background: #0f172a; }
+
+.severity-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 3px rgba(0,0,0,0.03); }
+.severity-dot.red { background: #ef4444; }
+.severity-dot.yellow { background: #f59e0b; }
+.severity-dot.green { background: #16a34a; }
+
+.message-body { max-width: 92%; }
+.message-text { margin: 0; background: white; border: 2px solid #e0e7ff; padding: 12px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; white-space: pre-wrap; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0,0,0,0.06); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.message-text:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); border-color: #0ea5e9; }
+
+/* Compact empty-state and card */
+.empty-state { padding: 8px; margin-top: 6px; width: 100%; }
+.start-investigation h2 { font-size: 15px; }
+
+/* Make chat input compact and sticky */
+.chat-input { padding: 8px; box-shadow: 0 -6px 18px rgba(15,23,42,0.03); }
+
+/* Sidebar width tighter */
+.history { width: 240px; }
+
+/* Incident item tighter */
+.incident-item { padding: 6px 8px; font-size: 13px; }
+
+/* Status bar refined */
+.status-bar { height: auto; font-size: 14px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, #ffffff 0%, #f8fafc 100%); border-top: 2px solid #e0e7ff; transition: all 0.3s ease; box-shadow: 0 -2px 8px rgba(0,0,0,0.04); }
+
+/* Scrollbar subtle */
+.chat-window::-webkit-scrollbar { width: 10px; }
+.chat-window::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.06); border-radius: 8px; }
+
+.chat-input {
+  display: flex;
+  padding: 12px 14px;
+  border-top: 2px solid #e0e7ff;
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  transition: all 0.2s ease;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+}
+
+/* Visual emphasis for active incident */
+.incident-item.active {
+  border-left: 4px solid #0ea5e9;
+  padding-left: 12px;
+  background: linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%);
+  box-shadow: 0 2px 8px rgba(14,165,233,0.2);
+  border-radius: 8px;
+}
+
+/* Reduce header height for final layout */
+.header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  color: #f8fafc;
+  padding: 14px 16px;
+  font-size: 18px;
+  font-weight: 700;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(15,23,42,0.25);
+  letter-spacing: 0.5px;
+}
+
+/* Reduce vertical spacing in empty cards */
+.start-investigation {
+  padding: 12px;
+}
+
+.start-investigation h2 { font-size: 16px; margin-bottom: 6px; }
+.start-investigation ul { margin-top: 6px; }
+
+/* Section spacing */
+.section { margin-bottom: 12px; }
+
+/* Compact examples */
+.examples { font-size: 14px; line-height: 1.4; }
+
+/* Status bar compact */
+.status-bar { height: 36px; font-size: 14px; padding: 6px 12px; }
+
+/* Lock layout to viewport */
+.app-container { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+
+.layout { flex: 1; height: calc(100vh - 56px - 44px); }
+
+/* Sidebar compact */
+.sidebar-item { padding: 8px 12px; }
+
+.incident-item {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e7ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  border-left: 4px solid transparent;
+}
+
+.incident-item:hover {
+  background: linear-gradient(90deg, #e0f2fe 0%, #f0f9ff 100%);
+  border-left: 4px solid #0ea5e9;
+  padding-left: 8px;
+  transform: translateX(2px);
+}
+
+.status {
+  padding: 10px;
+  background: #f1f5f9;
+  border-top: 1px solid #ddd;
+}
+
+/* Empty state for new incidents */
+.card { padding: 16px 20px; }
+
+.empty-state {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #fbfcfe 100%);
+  border: 2px solid #0ea5e9;
+  padding: 20px 24px;
+  border-radius: 16px;
+  color: #0f172a;
+  box-shadow: 0 8px 32px rgba(14,165,233,0.15);
+  animation: slideDown 0.4s ease-out;
+  margin-top: 12px;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.start-investigation h2 {
+  margin: 0 0 12px 0;
+  font-size: 22px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.empty-state p {
+  margin: 0 0 10px 0;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.empty-state ul {
+  margin: 8px 0 0 0;
+  padding-left: 24px;
+  color: #475569;
+}
+
+.empty-state li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.muted {
+  color: #64748b;
+  margin-top: 12px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Input area */
+.input-label {
+  font-size: 12px;
+  color: #334155;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input-textarea {
+  flex: 1;
+  resize: none;
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 2px solid #e0e7ff;
+  font-size: 14px;
+  min-height: 50px;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.input-textarea:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 4px rgba(14,165,233,0.15);
+}
+
+.send-button {
+  padding: 10px 20px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  color: white;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(14,165,233,0.4);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+.send-button:hover:not(.disabled) { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(14,165,233,0.5); }
+.send-button:active:not(.disabled) { transform: translateY(-1px); }
+
+.send-button.disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Status badges */
+.status {
+  padding: 10px 16px;
+  background: #fff;
+  border-top: 1px solid #e6e6e6;
+  box-shadow: 0 -1px 0 rgba(15,23,42,0.03);
+}
+
+.status .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status .dot.green { background: #16a34a; }
+.status .dot.red { background: #ef4444; }
+.status .dot.yellow { background: #eab308; }
