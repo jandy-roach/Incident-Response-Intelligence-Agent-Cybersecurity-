@@ -1,0 +1,16 @@
+PLAYBOOK: Potential Data Exfiltration
+Description:
+Unexpected outbound traffic from servers to unknown external IP addresses may indicate data exfiltration.
+
+Recommended Actions:
+- Identify the source and destination of traffic.
+- Check authentication logs for suspicious access.
+- Disable compromised credentials.
+- Block malicious IPs at the firewall.
+- Isolate affected systems if necessary.
+
+Severity:
+High
+
+Framework Reference:
+NIST Incident Handling – Identification and Containment

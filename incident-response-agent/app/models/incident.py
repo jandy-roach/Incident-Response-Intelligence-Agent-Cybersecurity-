@@ -6,4 +6,5 @@ class Message(BaseModel):
     content: str
 
 class IncidentRequest(BaseModel):
+    incident_id: str
     messages: List[Message]
